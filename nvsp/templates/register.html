@@ -23,124 +23,92 @@
             margin-right: auto;
             margin-left: auto;
         }
-
     </style>
 </head>
 
 <body>
-<form action="notifcation.php" method="POST" enctype="multipart/form-data">
-    <table class="center">
+    <form action="register" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="center">
 
-                <tr>
-                    <td id="header" colspan="4">
-                        *Required Field
-                    </td>
-                </tr>
+            <tr>
+                <td id="header" colspan="4">
+                    *Required Field
+                </td>
+            </tr>
 
-                <tr>
-                    <td>
-                        *User Name:
-                        </td>
-                    <td colspan="3">
-                        <input type="text" name="username">
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    *User Name:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="username">
+                </td>
+            </tr>
 
-                <tr>
-                    <td>
-                        *New Password:
-                    </td>
-                    <td colspan="3">
-                        <input type="password" name="password" required>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    *First Name:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="first_name">
+                </td>
+            </tr>
 
-                <tr>
-                    <td>
-                        *Reenter Password:
-                    </td>
-                    <td colspan="3">
-                        <input type="password" name="confPassword" required>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    Last Name:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="last_name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *Email:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="email">
+                </td>
+            </tr>
 
-                <tr>
-                    <td>*Gender</td>
-                    <td colspan="3">
-                        Male <input type="radio" name="gender" value="Male" checked>
-                        Female <input type="radio" name="gender" value="Female">
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    *Password:
+                </td>
+                <td colspan="3">
+                    <input type="password" name="password" required>
+                </td>
+            </tr>
 
-        <tr>
-            <td>* Birth date</td>
-            <td colspan="2">
-                <select name="day">
-                    <?php
-                    for ($i = 1; $i < 32; $i++) {
-                        echo "<option value='" . $i . "'>";
-                        echo sprintf('%02d', $i);
-                        echo "</option></br>";
-                    }
-                    ?>
-                </select>
-                /
-                <select name="month" >Select Month
-                    <?php
-                    for ($i = 1; $i < 13; $i++) {
-                        echo "<option value='" . $i . "'>";
-                        echo sprintf('%02d', $i);
-                        echo "</option></br>";
-                    }
-                    ?>
-                </select>
-                /
-                <select name="Year">
-                    <?php
-                    for ($i = 1901; $i < 2021; $i++) {
-                        echo "<option value='" . $i . "'>" . $i . "</option></br>";
-                    }
-                    ?>
-                </select>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    *Confirm Password:
+                </td>
+                <td colspan="3">
+                    <input type="password" name="confPassword" required>
+                </td>
+            </tr>
 
-        <tr>
-            <td>Interested in:</td>
-            <td>
-                <input type="checkbox" name='interests[]' value="training"> Training
-                <input type="checkbox" name='interests[]' value="placement">Placement
-            </td>
-        </tr>
 
-        <tr>
-            <td colspan="4">
-                Achievements:
-            </td>
-        </tr>
 
-        <tr>
-            <td colspan="4">
-                <textarea name="Achievements" id="ach" cols="60" rows="15"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>Select Your File</td>
-            <td><input type="file" name="myFile" value="myFile" accept="image"></td>
-        </tr>
-        <tr>
             <td align="center">
                 <input type="submit" name="submit" value="submit">
             </td>
             <td align="center">
                 <input type="reset" name="reset" value="Reset">
             </td>
-        </tr>
-    </table>
+            </tr>
+        </table>
     </form>
 
+<br>
 
-
+<div align='center'> 
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</div>
 
 </body>
 
