@@ -44,7 +44,7 @@ def login(request) :
 
         if user is not None:
             auth.login(request,user)
-            return redirect('green')
+            return redirect('home')
         else:
             messages.info(request,'Username Or Password is wrong...  :( ')
             return redirect('login')
@@ -52,9 +52,9 @@ def login(request) :
         return render(request,'login.html')
 
 
-def green(request) :
-    return render(request,'index.html')
+def home(request) :
+    return render(request,'home.html')
 
 def logout(request) :
     auth.logout(request)
-    return redirect('green')
+    return redirect('home')
