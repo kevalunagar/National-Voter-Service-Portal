@@ -1,79 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        table,
-        tr,
-        td {
-            border: 1px solid black;
-            width: auto;
-        }
 
-        #header {
-            column-width: auto;
-            color: red;
-            column-span: all;
-        }
+    <!-- Bootstrap  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
-        .center {
-            margin-right: auto;
-            margin-left: auto;
-        }
-    </style>
+    <!-- CSS File -->
+    <link rel="stylesheet" href={% static 'login_css.css' %}>
+
 </head>
-
-<body>
-    <form action="login" method="POST" enctype="multipart/form-data">
+<body style="background-image: url({% static 'img/back.jpg' %});">
+    <form action="" method="POST">
         {% csrf_token %}
-        <table class="center">
+        <div class="card">
+            <img src={% static 'img/login_user.png' %} class="card-img-top user-image" alt="User Profile Image">
+            <div class="card-body">
+                <h5 class="card-title"><marquee behavior="alternate" >Welcome to Login Page !</marquee></h5>
+                <p class="card-text">
+                    <div class="">
+                        <label for="username"><b>Username</b></label><br>
+                        <input type="text" placeholder="Enter Username" name="username" required><br>
 
-            <tr>
-                <td id="header" colspan="4">
-                    *Required Field
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    *User Name:
-                </td>
-                <td colspan="3">
-                    <input type="text" name="username">
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    *Password:
-                </td>
-                <td colspan="3">
-                    <input type="password" name="password" required>
-                </td>
-            </tr>
-
-
-
-
-
-            <td align="center">
-                <input type="submit" name="submit" value="Login">
-            </td>
-            <td align="center">
-                <input type="reset" name="reset" value="Reset">
-            </td>
-            </tr>
-        </table>
-    </form>
-
+                        <label for="password"><b>Password</b></label><br>
+                        <input type="password" placeholder="Enter Password" name="password" required><br>
+                    </div> 
+                </p>
+                <input class="btn btn-primary col-12" type="submit" value="Login">
+                <p class="footer">Don't Have An Account ? <a href="register">Sign up</a> </p>
+            </div>
+        </div>
+    </form>    
+    
     <div align='center'>
         {% for message in messages %}
         <h3>{{message}}</h3>
         {% endfor %}
     </div>
-</body>
 
+    <!-- Bootstrap Js-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+
+</body>
 </html>
