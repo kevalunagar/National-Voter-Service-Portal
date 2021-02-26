@@ -20,6 +20,13 @@
 
 </head>
 <body style="background-image: url({% static 'img/back.jpg' %});">
+    
+    <div align='center'>
+        {% for message in messages %}
+        <h3 style="color: azure;">{{message}}</h3>
+        {% endfor %}
+    </div>
+    <br> <br>
     <form action="" method="POST">
         {% csrf_token %}
         <div class="card">
@@ -41,11 +48,7 @@
         </div>
     </form>    
     
-    <div align='center'>
-        {% for message in messages %}
-        <h3>{{message}}</h3>
-        {% endfor %}
-    </div>
+    
 
     <!-- Bootstrap Js-->
     <script
