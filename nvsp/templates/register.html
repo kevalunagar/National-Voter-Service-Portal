@@ -1,115 +1,174 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <style>
-        table,
-        tr,
-        td {
-            border: 1px solid black;
-            width: auto;
-        }
 
-        #header {
-            column-width: auto;
-            color: red;
-            column-span: all;
-        }
+    <!-- Bootstrap  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
-        .center {
-            margin-right: auto;
-            margin-left: auto;
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href={% static 'register_css.css' %}>
+
 </head>
-
 <body>
-    <form action="register" method="POST" enctype="multipart/form-data">
+
+    <!-- Navigation Bar -->
+    <section id="navigation_bar">
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="#">
+        <img class="flag" src={% static 'img/logo.jpg' %} alt="indian flag">
+        National Voter Service Portal
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggler"
+          aria-controls="navbarToggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Services</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    >Apply For New Voter id Card</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    >Modification in Voter id Card</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Download Forms</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Search in Electoral Roll</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Track Application Status</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About us</a>
+            </li>
+            {% if user.is_authenticated %}
+              <li>
+                <div class="profile">
+                <img class="flag" src={% static 'img/user.webp' %} alt="User Profile Image">
+                <a class="user" href="#"> {{user.username}}</a>
+                </div>
+              </li>
+              <li>
+                <a class="nav-link" href="logout">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="login">Login</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+
+    <div align='center'> 
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+
+    <form action="register" method="POST">
         {% csrf_token %}
-        <table class="center">
+        <div class="card">
+            <img src={% static 'img/register_user.png' %} class="card-img-top user-image" alt="User Profile Image">
+            <div class="card-body">
+                <h5 class="card-title"><marquee behavior="alternate" >Register Your Self Here ! </marquee></h5>
+                <p class="card-text">
+                    <div class="row">
+                        <div class="col">
+                        <label for="username"><b>Username</b></label><br>
+                        <input type="text" placeholder="Enter Username" name="username" required><br>
 
-            <tr>
-                <td id="header" colspan="4">
-                    *Required Field
-                </td>
-            </tr>
+                        <label for="first_name"><b>Firstname</b></label><br>
+                        <input type="text" placeholder="Enter Firstname" name="first_name" required><br>
 
-            <tr>
-                <td>
-                    *User Name:
-                </td>
-                <td colspan="3">
-                    <input type="text" name="username">
-                </td>
-            </tr>
+                        <label for="last_name"><b>Lastname</b></label><br>
+                        <input type="text" placeholder="Enter Lastname" name="last_name" required><br>
+                        </div>
 
-            <tr>
-                <td>
-                    *First Name:
-                </td>
-                <td colspan="3">
-                    <input type="text" name="first_name">
-                </td>
-            </tr>
+                        <div class="col">
+                        <label for="email"><b>Email</b></label><br>
+                        <input type="email" placeholder="Enter Email" name="email" required><br>
 
-            <tr>
-                <td>
-                    Last Name:
-                </td>
-                <td colspan="3">
-                    <input type="text" name="last_name">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    *Email:
-                </td>
-                <td colspan="3">
-                    <input type="text" name="email">
-                </td>
-            </tr>
+                        <label for="password"><b>Password</b></label><br>
+                        <input type="password" placeholder="Enter Password" name="password" required><br>
 
-            <tr>
-                <td>
-                    *Password:
-                </td>
-                <td colspan="3">
-                    <input type="password" name="password" required>
-                </td>
-            </tr>
+                        <label for="confPassword"><b>Confirm Password</b></label><br>
+                        <input type="password" placeholder="Re-Enter Password" name="confPassword" required><br>
+                        </div>
+                    </div> 
+                </p>
+                <input class="btn btn-color col-12" type="submit" value="Register">
+                <p class="footer">Already Have An Account ? <a href="login">Sign in</a> </p>
+            </div>
+        </div>
+    </form>    
 
-            <tr>
-                <td>
-                    *Confirm Password:
-                </td>
-                <td colspan="3">
-                    <input type="password" name="confPassword" required>
-                </td>
-            </tr>
+    <!-- Footer -->
+    <section id="footer">
+      
+      <i class="fab fa-facebook-f social"></i>
+      <i class="social fab fa-twitter"></i>
+      <i class="social fab fa-instagram"></i>
+      <i class="social fas fa-envelope"></i>
+      <p>© Copyright 2021 National Voter Service Portal</p>
 
+    </section>
 
+    <!-- Bootstrap Js-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
 
-            <td align="center">
-                <input type="submit" name="submit" value="submit">
-            </td>
-            <td align="center">
-                <input type="reset" name="reset" value="Reset">
-            </td>
-            </tr>
-        </table>
-    </form>
-
-<br>
-
-<div align='center'> 
-    {% for message in messages %}
-    <h3>{{message}}</h3>
-    {% endfor %}
-</div>
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 </body>
-
 </html>

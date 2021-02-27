@@ -1,7 +1,6 @@
 body {
     padding: 10px;
     background-color: white;
-    
 }
 
 h5 {
@@ -26,6 +25,7 @@ h4:hover{
 .navbar-custom {
     padding: 1.5% 1.5% 1.5%;
     margin-bottom: 10px;
+    background-color: lightgoldenrodyellow;
 }
 
 .nav-item {
@@ -163,6 +163,7 @@ h4:hover{
 #footer {
     text-align: center;
     padding: 3% 15%;
+    background-color: lightgoldenrodyellow;
 }
 
 .social {
