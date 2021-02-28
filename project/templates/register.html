@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+            width: auto;
+        }
+
+        #header {
+            column-width: auto;
+            color: red;
+            column-span: all;
+        }
+
+        .center {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="register" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="center">
+
+            <tr>
+                <td id="header" colspan="4">
+                    *Required Field
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    *User Name:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="username">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    *First Name:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="first_name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Last Name:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="last_name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    *Email:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="email">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    *Password:
+                </td>
+                <td colspan="3">
+                    <input type="password" name="password" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    *Confirm Password:
+                </td>
+                <td colspan="3">
+                    <input type="password" name="confPassword" required>
+                </td>
+            </tr>
+
+
+
+            <td align="center">
+                <input type="submit" name="submit" value="submit">
+            </td>
+            <td align="center">
+                <input type="reset" name="reset" value="Reset">
+            </td>
+            </tr>
+        </table>
+    </form>
+
+<br>
+
+<div align='center'> 
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</div>
+
+</body>
+
+</html>
