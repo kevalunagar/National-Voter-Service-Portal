@@ -22,4 +22,5 @@ urlpatterns = [
     path('hello_world',include('hello_world.urls')),
     path('dbtestapp/',include('dbtestapp.urls')),
     path('',include('loginmodule.urls')),
+    path('firstdb/',include('firstdbtest.urls')),
 ]
