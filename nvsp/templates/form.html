@@ -15,6 +15,14 @@
 
 {% block body %}
 
-    
+    <section>
+
+        {% for x in forms %}
+            <h1>{{x.title}}</h1><br>
+            <h3>{{x.description}}</h3><br>
+            <a href={{x.file.url}}>Download</a>
+        {% endfor %}
+
+    </section>
 
 {% endblock body %}

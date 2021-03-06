@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import Form
 
 # Create your views here.
 def download(request):
-    return render(request,'form.html')
+    forms = Form.objects.all()
+    return render(request, 'form.html', {'forms' : forms})
