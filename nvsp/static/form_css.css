@@ -52,3 +52,17 @@
 .social {
     margin: 20px 10px;
 }
+
+#forms {
+    padding: 5% 6%;
+    background-color: white;
+}
+
+td {
+    font-size: 1.3rem;
+    padding: 10px 20px;
+}
+
+th {
+    font-size: 1.3rem;
+}

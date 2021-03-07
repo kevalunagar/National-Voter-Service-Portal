@@ -15,14 +15,23 @@
 
 {% block body %}
 
-    <section>
+    <section id="forms">
 
+    <table class="table table-primary table-hover table-bordered border-primary">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Link</th>
+        </tr>
         {% for x in forms %}
-            <h1>{{x.title}}</h1><br>
-            <h3>{{x.description}}</h3><br>
-            <a href={{x.file.url}}>Download</a>
+        <tr>
+            <td>{{x.title}}</td>  
+            <td>{{x.description}}</td>
+            <td><a href={{x.file.url}}>Download</a></td>
+        </tr>
         {% endfor %}
-
+    </table>
+        
     </section>
 
 {% endblock body %}
