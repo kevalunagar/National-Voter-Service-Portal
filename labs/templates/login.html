@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Bootstrap  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href={% static 'login_css.css' %}>
+
+</head>
+<body style="background-image: url({% static 'img/back.jpg' %});">
+    
+    <div align='center'>
+        {% for message in messages %}
+        <h3 style="color: azure;">{{message}}</h3>
+        {% endfor %}
+    </div>
+    <br> <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <div style="color: antiquewhite;">
+               <b>Welcome , {{user.username}}</b>
+            <a class="nav-link" href="logout" style="color: antiquewhite;">Click here for Logout</a>
+            </div>            
+        {% endif %}
+        <div class="card">
+            <img src={% static 'img/login_user.png' %} class="card-img-top user-image" alt="User Profile Image">
+            <div class="card-body">
+                <h5 class="card-title"><marquee behavior="alternate" >Welcome to Login Page !</marquee></h5>
+                <p class="card-text">
+                    <div class="">
+                        <label for="username"><b>Username</b></label><br>
+                        <input type="text" placeholder="Enter Username" name="username" required><br>
+
+                        <label for="password"><b>Password</b></label><br>
+                        <input type="password" placeholder="Enter Password" name="password" required><br>
+                    </div> 
+                </p>
+                <input class="btn btn-primary col-12" type="submit" value="Login">
+                <p class="footer">Don't Have An Account ? <a href="register">Sign up</a> </p>
+            </div>
+        </div>
+    </form>    
+    
+    
+
+    <!-- Bootstrap Js-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+
+</body>
+</html>

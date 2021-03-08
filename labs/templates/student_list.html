@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Student List</h1>
+
+    {% if student_list %}
+    <ul>
+
+      {% for student in student_list %}
+      <li>
+        <a href="{{ student.get_absolute_url }}">{{ student.student_name }}</a> ({{student.student_dob}})
+<form action="/firstdb/delstudentinfo/" method = "post">{% csrf_token %}
+	  <input type="hidden" name="studentname" value={{student.student_name}} />
+	  <input type="submit" value="delete">
+	</form>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no students registered.</p>
+    {% endif %}       
+    <p> Click <a href="/firstdb/getstudentinfo/"</a> to add new record. </p>
+{% endblock %}

@@ -1,0 +1,37 @@
+body {
+    padding: 5% 32%;
+    background-color: white;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input {
+    margin-bottom: 10px;
+    width: 450px;
+    padding: 10px 20px;
+}
+
+.user-image {
+    width: 150px;
+    height: 150px;
+    margin: 15px auto -5px auto;
+}
+
+.card {
+    width: fit-content;
+}
+
+.card-title {
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    color: red;
+}
+
+.footer {
+    margin-top: 10px;
+    margin-bottom: -5px;
+    text-align: center;
+}
