@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block CSS %}
+
+<!-- CSS File -->
+<link rel="stylesheet" href={% static 'login_css.css' %}>
+
+{% endblock CSS %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form</title>
+</head>
+
+<body>
+
+    <div align='center'>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+
+    {{hello}}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        Enter your personal details<br>
+        Name* <input type="text" name="name" placeholder="{{user.username}}" required /><br>
+        Surname* <input type="text" name="surname" required /><br>
+        Gender of Applicant* 
+        <input type="radio" name="gender" value="male" required> Male 
+        <input type="radio" name="gender" value="female" required> Female <br>
+        <input type="radio" name="gender" value="other" required> Other <br>
+
+        Enter postal address<br>
+        <input type="hidden" name="country" id="countryId" value="IN" />
+        <select name="state" class="states order-alpha" id="stateId">
+            <option value="">Select State</option>
+        </select><br>
+        <select name="city" class="cities order-alpha limit-pop-10000" id="cityId">
+            <option value="">Select City</option>
+        </select><br>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//geodata.solutions/includes/statecity.js"></script>
+        <textarea name="address" placeholder="House No.*  Street/Area/Locality*  Town/Village*" rows="5"
+            required></textarea><br>
+        <input type="text" name="pincode" placeholder="Pin Code *" required><br>
+
+        Enter your birth details<br>
+        Enter your date of birth* <input type="date" name="dob" required /><br>
+
+        Enter your Father/Mother/Husband Details<br>
+        <select name="relation">
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="hasband">Hadband</option>
+            <option value="other">Other</option>
+        </select><br>
+        Name of Relative of Applicant* : <input type="text" name="relativeName" required /><br>
+        Surname of Relative of Applicant* : <input type="text" name="relativeSurname" required /><br>
+
+        Additional Information
+        Email id (optional) <input type="email" name="email" /><br>
+        Mobile No. (optional) <input type="tel" id="phone" name="phone" maxlength="10" minlength="10">
+
+        Declaration
+        Place* <input type="text" name="applyFrom" required /><br>
+        Date* <input type="date" name="applyAt" required /><br>
+
+        <input type="submit" name="submit" value="Next">
+        <input type="reset" name="reset" id="Reset">
+    </form>
+</body>
+
+</html>
+{% endblock body %}
