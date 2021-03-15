@@ -58,3 +58,10 @@ def home(request) :
 def logout(request) :
     auth.logout(request)
     return redirect('home')
+
+
+def profile(request) :
+    if request.user.is_authenticated: 
+        return render(request,'profile.html')
+    messages.info(request,'Please Login for check your profile')
+    return redirect('login')
