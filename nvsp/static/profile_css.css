@@ -1,0 +1,90 @@
+body{
+    color: #2c281a; 
+    text-align: left;  
+}
+
+.main-body {
+    padding: 15px;
+}
+
+.navbar-custom {
+    padding: 1.5% 1.5% 1.5%;
+    background-color: lightgoldenrodyellow;
+}
+
+.nav-item {
+    padding: 0 15px;
+}
+
+.navbar-brand {
+    color: black;
+    font-family: 'Ubuntu';
+    font-size: 2rem;
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.navbar .dropdown-menu {
+     background-color: white; 
+     font-family: 'Montserrat', sans-serif;
+} 
+
+.flag {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.user {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: -10px;
+    margin-right: 5px;
+}
+
+
+#footer {
+    text-align: center;
+    padding: 3% 15%;
+    background-color: lightgoldenrodyellow;
+}
+
+.social {
+    margin: 20px 10px;
+}
+
+
+.footer {
+    margin-top: 10px;
+    margin-bottom: -5px;
+    text-align: center;
+}
+
+
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
