@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %} 
+    Upload Documents
+{% endblock title %} 
+
+{% block CSS %}
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href={% static 'upload_documents_css.css' %}> 
+    
+{% endblock CSS %} 
+
+{% block body %}
+    
+    <h4 class="title">
+        2) Upload Your Documents 
+    </h4>
+
+    <form action="upload" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card">
+            <div class="card-body">
+                <div class="card-text">
+
+                    <label for="photo"><b>1) Passport Size Photograph *</b></label><br>
+                    <input type="file" name="photo" required><br>
+
+                    <label for="aadharCard"><b>2) Aadhar Card *</b></label><br>
+                    <input type="file" name="aadharCard" required><br>
+
+                    <label for="declaration"><b>3) Self Declaration *</b></label><br>
+                    <input type="file" name="declaration" required><br>
+
+                    <center>
+                    <input class="btn btn-outline-dark custom-btn" type="submit" name="submit" value="Next">
+                    </center>
+
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock body %}

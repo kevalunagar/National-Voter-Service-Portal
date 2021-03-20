@@ -12,41 +12,55 @@ from datetime import date
 #     age = today.year - birthDate - ((today.month, today.day) < (birthDate.month, birthDate.day)) 
 #     return age 
 
+apply = ApplicationData()
+
 def application(request):
     today = date.today()
     if request.method=='POST':
-        name = request.POST['name']
-        surname = request.POST['surname']
-        gender = request.POST['gender']
-        state = request.POST['state']
-        city = request.POST['city']
-        address = request.POST['address']
-        pincode = request.POST['pincode']
-        dob = request.POST['dob']
-        relation = request.POST['relation']
-        relativeName = request.POST['relativeName']
-        relativeSurname = request.POST['relativeSurname']
-        email = request.POST['email']
-        mobile = request.POST['phone']
-        declarationPlace = request.POST['applyFrom']
-        declarationDate = request.POST['applyAt']
-        dob = datetime.datetime.strptime(dob, '%Y-%m-%d')
-       
+        apply.name = request.POST['name']
+        apply.surname = request.POST['surname']
+        apply.gender = request.POST['gender']
+        apply.state = request.POST['state']
+        apply.city = request.POST['city']
+        apply.address = request.POST['address']
+        apply.pincode = request.POST['pincode']
+        apply.dob = request.POST['dob']
+        apply.relation = request.POST['relation']
+        apply.relativeName = request.POST['relativeName']
+        apply.relativeSurname = request.POST['relativeSurname']
+        apply.email = request.POST['email']
+        apply.mobile = request.POST['phone']
+        apply.declarationPlace = request.POST['applyFrom']
+        apply.declarationDate = request.POST['applyAt']
+        apply.dob = datetime.datetime.strptime(apply.dob, '%Y-%m-%d')
 
-        if  (today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))) < 18 :
+        if  (today.year - apply.dob.year - ((today.month, today.day) < (apply.dob.month, apply.dob.day))) < 18 :
             messages.info(request,'Youe age is less than 18 you can not apply for voter id card')
             return redirect('application')
     
         else:
-            apply = ApplicationData(name=name , surname=surname , gender=gender , state=state , city=city , address=address , pincode=pincode , dob=dob , relation=relation , relativeName=relativeName , relativeSurname=relativeSurname , email=email , mobile=mobile , declarationDate=declarationDate , declarationPlace=declarationPlace)
+            #apply = ApplicationData(name=name , surname=surname , gender=gender , state=state , city=city , address=address , pincode=pincode , dob=dob , relation=relation , relativeName=relativeName , relativeSurname=relativeSurname , email=email , mobile=mobile , declarationDate=declarationDate , declarationPlace=declarationPlace)
             apply.save()
-            return redirect('home')
+            return redirect('upload')
     
     else:
         if request.user.is_authenticated: 
-            return render(request,'application_form.html')
+            return render(request,'applicationform.html')
         messages.info(request,'Please Login first then apply for new application')
-        return redirect('login')
+        return redirect('/login')
 
 
+def upload(request):
+    if request.method == 'POST':
+        apply.photo = request.FILES['photo']
+        apply.aadharCard = request.FILES['aadharCard']
+        apply.declaration = request.FILES['declaration']
 
+        #apply = ApplicationData(photo=photo, aadharCard=aadharCard, declaration=declaration)
+        apply.save()
+        return redirect('preview')
+    else:
+        return render(request, 'upload_documents.html')
+
+def preview(request):
+    return render(request, 'preview.html', {'apply': apply })

@@ -17,3 +17,6 @@ class ApplicationData(models.Model) :
     mobile = models.CharField(max_length=15 , null=True)
     declarationPlace = models.CharField(max_length=50)
     declarationDate = models.DateField()
+    photo = models.ImageField(null=True, upload_to="documents")
+    aadharCard = models.ImageField(null=True, upload_to="documents")
+    declaration = models.ImageField(null=True, upload_to="documents")

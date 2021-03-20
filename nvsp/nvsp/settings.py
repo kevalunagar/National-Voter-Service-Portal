@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nvsp',
         'USER': 'root',
-        'PASSWORD': 'shubham@1402',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'POST': '3306',
     }

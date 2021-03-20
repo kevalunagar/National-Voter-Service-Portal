@@ -1,0 +1,86 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %} 
+    Preview Application 
+{% endblock title %} 
+
+{% block CSS %}
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href={% static 'preview_css.css' %}> 
+    
+{% endblock CSS %} 
+
+{% block body %}
+
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                Application For New Elector
+            </div>
+            <div class="card-text">
+                <h3>Personal Details :- </h3>
+
+                <ul>
+
+                <img class="profile-img" src={{apply.photo.url}} alt="User Profile Image">
+
+                <li><label for="name"><b>Name of Applicant : </b></label>
+                {{apply.name}} {{apply.surname}}<br></li>
+
+                <li><label for="gender"><b>Gender of Applicant : </b></label>
+                {{apply.gender}}<br></li>
+
+                <li><label for="date"><b>Date Of Birth :</b></label>
+                {{apply.dob}}<br></li>
+
+                <li><label for="email"><b>Email id : </b></label>
+                {{apply.email}}<br></li>
+
+                <li><label for="phone"><b>Mobile No. :</b></label>
+                {{apply.mobile}}<br></li>
+
+                <li><label for="address"><b>Address : </b></label>
+                {{apply.address}}<br></li>
+
+                <li><label for="state"><b>State : </b></label>
+                {{apply.state}}<br></li>
+
+                <li><label for="city"><b>City : </b></label>
+                {{apply.city}}<br></li>
+
+                <li><label for="pincode"><b>Pincode : </b></label>
+                {{apply.pincode}}<br></li>
+
+                <li><label for="relation"><b>Relation :</b></label>
+                {{apply.relation}} <br></li>
+
+                <li><label for="relativeName"><b>Name of Relative of Applicant : </b></label>
+                {{apply.relativeName}} {{apply.relativeSurname}} <br></li>
+
+                <li><label for="applyFrom"><b>Declaration Place : </b></label>
+                {{apply.declarationPlace}}<br></li>
+
+                <li><label for="applyAt"><b>Date Of Apply : </b></label>
+                {{apply.declarationDate}}<br></li>
+                </ul>
+
+                <h3>Uploaded Documents :- </h3>
+
+                <ul>
+                    <li><label for=""><b>Passport Size Photo <i class="fas fa-check-circle"></i></b></label></li>
+                    <li><label for=""><b>Aadhar Card  <i class="fas fa-check-circle"></i></b></label></li>
+                    <li><label for=""><b>Self Declaration for Age <i class="fas fa-check-circle"></i></b></label></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <center>
+    <a class="btn btn-outline-dark custom-btn" href="/">Go to Home Page</a>
+    </center>
+
+{% endblock body %}
