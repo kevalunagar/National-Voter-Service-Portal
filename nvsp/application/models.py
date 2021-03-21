@@ -2,6 +2,7 @@ from django.db import models,migrations
 
 # Create your models here.
 class ApplicationData(models.Model) :
+    application_id=models.CharField(max_length=100)
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     gender = models.CharField(max_length=10)

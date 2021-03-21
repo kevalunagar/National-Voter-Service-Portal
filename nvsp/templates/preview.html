@@ -21,12 +21,15 @@
                 Application For New Elector
             </div>
             <div class="card-text">
+                
+                
                 <h3>Personal Details :- </h3>
 
                 <ul>
-
-                <img class="profile-img" src={{apply.photo.url}} alt="User Profile Image">
-
+                <div class="application">
+                <img class="profile-img" src={{apply.photo.url}} alt="User Profile Image"><br>
+                <h1>Application Id : <br> {{apply.application_id}} </h1>
+                </div>
                 <li><label for="name"><b>Name of Applicant : </b></label>
                 {{apply.name}} {{apply.surname}}<br></li>
 

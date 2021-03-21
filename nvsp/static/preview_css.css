@@ -59,10 +59,10 @@ label {
 }
 
 .profile-img {
-    float: right;
+    /* float: right; */
     width: 200px;
     height: 200px;
-    margin-right: 100px;
+    margin-right: 70px;
 }
 
 .card {
@@ -89,4 +89,22 @@ h3 {
 
 .custom-btn {
     margin-bottom: 20px;
+}
+
+h1{
+    font-size: 1.5rem;
+    text-decoration: underline;
+    font-weight: bold;
+    color: rgb(17, 0, 255);
+    text-align: center;
+    float: right;
+    line-height: 3rem;
+    margin-top: 25px;
+    margin-right: 70px;
+}
+
+.application {
+    float: right;
+    text-align: center;
+    
 }
