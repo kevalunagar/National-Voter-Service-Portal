@@ -1,0 +1,76 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %} 
+    Application Status 
+{% endblock title %} 
+
+{% block CSS %}
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href={% static 'showstatus_css.css' %}> 
+    
+{% endblock CSS %} 
+
+{% block body %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            Application Status
+        </div>
+        <div class="card-text">
+        {% for x in obj %}
+
+            <h1 class="id">Application Id : {{x.application_id}}</h1>
+
+            <div class="row">
+
+            <div class="col-2">
+            {% if x.submitted %}
+            <i class="fas icon fa-bullseye fa-3x"></i>
+            <h3>Application <br> Submitted</h3>
+            {% endif %}
+            </div>
+
+            <div class="col-2">
+            {% if x.appointed %}
+            <i class="fas icon fa-bullseye fa-3x"></i>
+            <h3>BLO<br>appointed</h3>
+            {% endif %}
+            </div>
+
+            <div class="col-2">
+            {% if x.verified %}
+            <i class="fas icon fa-bullseye fa-3x"></i>
+            <h3>Documents <br>Verified</h3>
+            {% endif %}
+            </div>
+
+            <div class="col-2">
+            {% if x.generated %}
+            <i class="fas icon fa-bullseye fa-3x"></i>
+            <h3>EPIC <br>Generated</h3><br>
+            {% endif %}
+            </div>
+
+            <div class="col-2">
+            <img class="img" src={{x.photo.url}} alt="User Profile">
+            </div>
+            
+            </div>
+            
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+    
+    {{x.submitted}}
+    {{x.appointed}}
+    {{x.verified}}
+    {{x.generated}}
+    
+
+{% endblock body %}

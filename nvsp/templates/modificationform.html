@@ -1,0 +1,135 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %} 
+    Modify Application 
+{% endblock title %} 
+
+{% block CSS %}
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href={% static 'applicationform_css.css' %}> 
+    
+{% endblock CSS %} 
+
+{% block body %}
+
+<div align="center">
+  {% for message in messages %}
+  <h3>{{message}}</h3>
+  {% endfor %}
+</div>
+
+<form action="" method="POST">
+  {% csrf_token %}
+{% for apply in obj %}
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">
+        1) Modify your personal details
+      </h4>
+      <div class="card-text">
+        <input type="hidden" name="id" value="{{apply.application_id}}">
+        <label for="name"><b>Name *</b></label>
+        &emsp;
+        &ensp;
+        <input
+          class="custom-text"
+          type="text"
+          name="name"
+          value="{{apply.name}}"
+          required
+        /><br />
+
+        <label for="surname"><b>Surname *</b></label>&nbsp;&nbsp;
+        <input class="custom-text" type="text" name="surname" value="{{apply.surname}}" required /><br />
+
+        <label for="gender"><b>Gender of Applicant *</b></label>
+        <input class="radio-button" type="radio" name="gender" value="male" required /> Male
+        <input class="radio-button" type="radio" name="gender" value="female" required /> Female
+        <input class="radio-button" type="radio" name="gender" value="other" required /> Other <br />
+        
+        <label for="state"><b>State *</b></label>
+        <input type="hidden" name="country" id="countryId" value="IN" />
+        <select name="state" class="states order-alpha" id="stateId">
+          <option value="">Select State</option></select
+        ><br />
+
+        
+        <label for="city"><b>City *</b></label>&ensp;
+        <select
+          name="city"
+          class="cities order-alpha limit-pop-10000"
+          id="cityId"
+        >
+          <option value="" >Select City</option></select
+        ><br />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//geodata.solutions/includes/statecity.js"></script>
+
+        <label for="address"><b>Address *</b></label><br>
+        <textarea
+          name="address"
+          rows="3"
+          cols="140"
+          required
+          style="margin-bottom: 10px;"
+        >{{apply.address}}</textarea><br />
+
+        <label for="pincode"><b>Pincode *</b></label>&emsp;&emsp;&emsp;
+        <input
+          class="custom-text"
+          type="text"
+          name="pincode"
+          value="{{apply.pincode}}"
+          required
+        /><br />
+
+        <label for="date"><b>Date Of Birth *</b></label>&ensp;
+        <input type="date" name="dob" required /><br />
+
+        <label for="relation"><b>Father/Mother/Husband Details *</b></label>&ensp;
+        <select name="relation">
+          <option value="father">Father</option>
+          <option value="mother">Mother</option>
+          <option value="hasband">Husband</option>
+          <option value="other">Other</option></select
+        ><br />
+
+        <label for="relativeName"><b>Name of Relative of Applicant *</b></label>&emsp;&ensp;
+        <input class="custom-text" type="text" name="relativeName" value="{{apply.relativeName}}" required /><br />
+
+        <label for="relativeSurname"><b>Surname of Relative of Applicant *</b></label>
+        <input class="custom-text" type="text" name="relativeSurname" value="{{apply.relativeSurname}}" required /><br />
+
+        <label for="email"><b>Email id</b></label>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+        <input class="custom-text" type="email" name="email" value="{{apply.email}}" /><br />
+
+        <label for="phone"><b>Mobile No. *</b></label>&emsp;&emsp;&emsp;
+        <input
+          class="custom-text"
+          type="tel"
+          id="phone"
+          name="phone"
+          maxlength="10"
+          minlength="10"
+          value="{{apply.mobile}}"
+        /><br>
+
+        <label for="applyFrom"><b>Declaration Place *</b></label>
+        <input class="custom-text" type="text" name="applyFrom" value="{{apply.declarationPlace}}" required /><br />
+
+        <center>
+        <input class="btn btn-outline-dark custom-btn" type="submit" name="submit" value="Modify" />
+        <input class="btn btn-outline-dark custom-btn" type="reset" name="reset" id="Reset" />
+        </center>
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</form>
+
+{% endblock body %}

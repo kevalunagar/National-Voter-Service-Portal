@@ -21,3 +21,7 @@ class ApplicationData(models.Model) :
     photo = models.ImageField(null=True, upload_to="documents")
     aadharCard = models.ImageField(null=True, upload_to="documents")
     declaration = models.ImageField(null=True, upload_to="documents")
+    submitted = models.BooleanField(default=False)
+    appointed = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)
+    generated = models.BooleanField(default=False)

@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %} 
+    Application Id 
+{% endblock title %} 
+
+{% block CSS %}
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href={% static 'applicationform_css.css' %}> 
+    
+{% endblock CSS %} 
+
+{% block body %}
+    <form action="{{obj.send}}" method="POST">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                Enter Your Application Id 
+            </div>
+            <div class="card-text">
+                <center>
+                    <label for="id"><b>Application Id :</b></label><br>
+                    <input style="width: 50%; height: 40px; padding: 20px 15px" type="text" name="id" placeholder="Enter Your Application id "><br>
+                
+                    <input class="btn btn-outline-dark custom-btn" type="submit" name="submit" value="Submit" />
+                    <input class="btn btn-outline-dark custom-btn" type="reset" name="reset" id="Reset" />
+                </center>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock body %}

@@ -4,6 +4,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User,auth
 from .models import ApplicationData
 from datetime import date 
+
+
   # Create your views here.
 
 # def calculateAge(birthDate): 
@@ -67,3 +69,51 @@ def preview(request):
     apply.application_id=(str(apply.name))+date
     apply.save()
     return render(request, 'preview.html', {'apply': apply })
+
+def modification(request):
+    
+    if request.user.is_authenticated: 
+        if request.method == "POST" and (request.POST['submit'] == 'Submit'):
+            id = request.POST['id']
+            obj = ApplicationData.objects.filter(application_id=id)
+            return render(request, 'modificationform.html', {'obj': obj })
+        elif request.method == "POST" and (request.POST['submit'] == 'Modify'):
+            id = request.POST['id']
+            ApplicationData.objects.filter(application_id=id).update(name = request.POST['name'])
+            ApplicationData.objects.filter(application_id=id).update(surname = request.POST['surname'])
+            ApplicationData.objects.filter(application_id=id).update(gender = request.POST['gender'])
+            ApplicationData.objects.filter(application_id=id).update(state = request.POST['state'])
+            ApplicationData.objects.filter(application_id=id).update(city = request.POST['city'])
+            ApplicationData.objects.filter(application_id=id).update(address = request.POST['address'])
+            ApplicationData.objects.filter(application_id=id).update(pincode = request.POST['pincode'])
+            ApplicationData.objects.filter(application_id=id).update(relation = request.POST['relation'])
+            ApplicationData.objects.filter(application_id=id).update(relativeName = request.POST['relativeName'])
+            ApplicationData.objects.filter(application_id=id).update(relativeSurname = request.POST['relativeSurname'])
+            ApplicationData.objects.filter(application_id=id).update(email = request.POST['email'])
+            ApplicationData.objects.filter(application_id=id).update(mobile = request.POST['phone'])
+            ApplicationData.objects.filter(application_id=id).update(declarationPlace = request.POST['applyFrom'])
+            ApplicationData.objects.filter(application_id=id).update(dob = datetime.datetime.strptime(request.POST['dob'], '%Y-%m-%d'))
+            return redirect('/')
+        else:
+            send = "modification"
+            return render(request,'applicationid.html', {'obj': send})
+        
+    else:
+        messages.info(request,'Please Login first then apply for Modification')
+        return redirect('/login')
+
+def status(request):
+    if request.user.is_authenticated: 
+        if request.method == 'POST':
+            id = request.POST['id']
+            obj = ApplicationData.objects.filter(application_id=id)
+            return render(request, 'showstatus.html', {'obj': obj })
+        else:
+            send = "status"
+            return render(request, 'applicationid.html', {'obj': send})
+    else:
+        messages.info(request,'Please Login first')
+        return redirect('/login')
+
+
+
