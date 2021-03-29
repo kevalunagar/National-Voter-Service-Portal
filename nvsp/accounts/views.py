@@ -29,7 +29,14 @@ def register(request) :
         else:
             user = User.objects.create_user(username=username,first_name=first_name,last_name=last_name,email=email,password=password)
             user.save()
-            return redirect('login')
+            user=auth.authenticate(username=username,password=password)
+
+            if user is not None:
+                auth.login(request,user)
+                return redirect('home')
+            else:
+                messages.info(request,'Username Or Password is wrong...  :( ')
+                return redirect('login')
     else:
         return render(request,'register.html')
 

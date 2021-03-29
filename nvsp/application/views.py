@@ -116,4 +116,24 @@ def status(request):
         return redirect('/login')
 
 
+def eEpic(request):
+    if request.user.is_authenticated: 
+        if request.method == 'POST':
+            id = request.POST['id']
+            if(ApplicationData.objects.filter(application_id=id).count()):
+                obj = ApplicationData.objects.filter(application_id=id)
+                return render(request, 'preview.html', {'apply': obj })
+            else:
+                messages.info(request,'Please enter valid Application Number.')
+                send = "eEpic"
+                return render(request, 'applicationid.html', {'obj': send})         
+        else:
+            send = "eEpic"
+            return render(request, 'applicationid.html', {'obj': send})
+    else:
+        messages.info(request,'Please Login first')
+        return redirect('/login')
+
+
+
 

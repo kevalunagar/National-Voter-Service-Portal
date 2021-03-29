@@ -14,6 +14,11 @@
 {% endblock CSS %} 
 
 {% block body %}
+    <div align='center'>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
     <form action="{{obj.send}}" method="POST">
     {% csrf_token %}
     <div class="card">
