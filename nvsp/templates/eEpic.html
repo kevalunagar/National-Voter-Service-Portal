@@ -12,6 +12,7 @@
                 font-weight: 100;
                 text-align: center;
                 color: #007cae;
+                text-decoration: underline;
             }
             .title {
                 font-size: 22px;
@@ -40,15 +41,14 @@
         {% for obj in  obj %}
         <div class='wrapper'>
             <div class='header'>
-                <p class='title'>{{obj.application_id}} </p>
+                <p class='title'><b>ELECTION COMMISSION OF INDIA</b>
+                </p>
             </div>
-
-            <h3>Personal Details :- </h3>
+            <div style="color: red;" class="header"><b>
+                Epic No : {{obj.application_id}}</b>
+            </div>
             <div class='details'>
                 <ul>
-                <div class="application">
-                    <img class="profile-img" src={{obj.photo.url}} alt="User Profile Image"><br>
-                </div>
                 
                 <li><label for="name"><b>Name of Applicant : </b></label>
                 {{obj.name}} {{obj.surname}}<br></li>
@@ -90,13 +90,6 @@
                 {{obj.declarationDate}}<br></li>
                 </ul>
 
-                <h3>Uploaded Documents :- </h3>
-
-                <ul>
-                    <li><label for=""><b>Passport Size Photo <i class="fas fa-check-circle"></i></b></label></li>
-                    <li><label for=""><b>Aadhar Card  <i class="fas fa-check-circle"></i></b></label></li>
-                    <li><label for=""><b>Self Declaration for Age <i class="fas fa-check-circle"></i></b></label></li>
-                </ul>
             </div>
         </div>
         {% endfor %}
