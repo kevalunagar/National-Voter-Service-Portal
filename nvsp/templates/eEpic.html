@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Epic Card</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        {% for obj in  obj %}
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'>{{obj.application_id}} </p>
+            </div>
+
+            <h3>Personal Details :- </h3>
+            <div class='details'>
+                <ul>
+                <div class="application">
+                    <img class="profile-img" src={{obj.photo.url}} alt="User Profile Image"><br>
+                </div>
+                
+                <li><label for="name"><b>Name of Applicant : </b></label>
+                {{obj.name}} {{obj.surname}}<br></li>
+
+                <li><label for="gender"><b>Gender of Applicant : </b></label>
+                {{obj.gender}}<br></li>
+
+                <li><label for="date"><b>Date Of Birth :</b></label>
+                {{obj.dob}}<br></li>
+
+                <li><label for="email"><b>Email id : </b></label>
+                {{obj.email}}<br></li>
+
+                <li><label for="phone"><b>Mobile No. :</b></label>
+                {{obj.mobile}}<br></li>
+
+                <li><label for="address"><b>Address : </b></label>
+                {{obj.address}}<br></li>
+
+                <li><label for="state"><b>State : </b></label>
+                {{obj.state}}<br></li>
+
+                <li><label for="city"><b>City : </b></label>
+                {{obj.city}}<br></li>
+
+                <li><label for="pincode"><b>Pincode : </b></label>
+                {{obj.pincode}}<br></li>
+
+                <li><label for="relation"><b>Relation :</b></label>
+                {{obj.relation}} <br></li>
+
+                <li><label for="relativeName"><b>Name of Relative of Applicant : </b></label>
+                {{obj.relativeName}} {{obj.relativeSurname}} <br></li>
+
+                <li><label for="applyFrom"><b>Declaration Place : </b></label>
+                {{obj.declarationPlace}}<br></li>
+
+                <li><label for="applyAt"><b>Date Of Apply : </b></label>
+                {{obj.declarationDate}}<br></li>
+                </ul>
+
+                <h3>Uploaded Documents :- </h3>
+
+                <ul>
+                    <li><label for=""><b>Passport Size Photo <i class="fas fa-check-circle"></i></b></label></li>
+                    <li><label for=""><b>Aadhar Card  <i class="fas fa-check-circle"></i></b></label></li>
+                    <li><label for=""><b>Self Declaration for Age <i class="fas fa-check-circle"></i></b></label></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+</html>

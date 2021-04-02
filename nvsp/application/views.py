@@ -5,14 +5,11 @@ from django.contrib.auth.models import User,auth
 from .models import ApplicationData
 from datetime import date 
 
+from django.http import HttpResponse
+from django.views.generic import View
 
-  # Create your views here.
+from .utils import render_to_pdf 
 
-# def calculateAge(birthDate): 
-#     today = date.today()
-#     birthDate=d 
-#     age = today.year - birthDate - ((today.month, today.day) < (birthDate.month, birthDate.day)) 
-#     return age 
 
 apply = ApplicationData()
 
@@ -48,7 +45,7 @@ def application(request):
     else:
         if request.user.is_authenticated: 
             return render(request,'applicationform.html')
-        messages.info(request,'Please Login first then apply for new application')
+        messages.info(request,'Please Login First Then Apply For New Application')
         return redirect('/login')
 
 
@@ -99,30 +96,38 @@ def modification(request):
             return render(request,'applicationid.html', {'obj': send})
         
     else:
-        messages.info(request,'Please Login first then apply for Modification')
+        messages.info(request,'Please Login For Modification In Your Application')
         return redirect('/login')
 
 def status(request):
     if request.user.is_authenticated: 
         if request.method == 'POST':
             id = request.POST['id']
-            obj = ApplicationData.objects.filter(application_id=id)
-            return render(request, 'showstatus.html', {'obj': obj })
+            if(ApplicationData.objects.filter(application_id=id).count()):
+                obj = ApplicationData.objects.filter(application_id=id)
+                return render(request, 'showstatus.html', {'obj': obj })
+            else:
+                messages.info(request,'Please enter valid Application Number.')
+                send = "status"
+                return render(request, 'applicationid.html', {'obj': send})
         else:
             send = "status"
             return render(request, 'applicationid.html', {'obj': send})
     else:
-        messages.info(request,'Please Login first')
+        messages.info(request,'Please Login For Track Your Status')
         return redirect('/login')
-
 
 def eEpic(request):
     if request.user.is_authenticated: 
         if request.method == 'POST':
             id = request.POST['id']
             if(ApplicationData.objects.filter(application_id=id).count()):
-                obj = ApplicationData.objects.filter(application_id=id)
-                return render(request, 'preview.html', {'apply': obj })
+                data = ApplicationData.objects.filter(application_id=id)
+                obj={
+                    'obj' : data
+                }
+                pdf = render_to_pdf('eEpic.html', obj)
+                return HttpResponse(pdf, content_type='application/pdf')
             else:
                 messages.info(request,'Please enter valid Application Number.')
                 send = "eEpic"
@@ -131,9 +136,7 @@ def eEpic(request):
             send = "eEpic"
             return render(request, 'applicationid.html', {'obj': send})
     else:
-        messages.info(request,'Please Login first')
+        messages.info(request,'Please Login For Download E-Epic Card')
         return redirect('/login')
-
-
 
 
