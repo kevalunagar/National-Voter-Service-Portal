@@ -64,6 +64,7 @@ def upload(request):
 def preview(request):
     date=str(apply.dob.strftime("%d%m%Y"))
     apply.application_id=(str(apply.name))+date
+    apply.submitted=True
     apply.save()
     return render(request, 'preview.html', {'apply': apply })
 
