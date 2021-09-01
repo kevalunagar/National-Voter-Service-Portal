@@ -22,3 +22,5 @@ To Run this Project :-
    ii) python manage.py migrate
 4) Now run the project.
    i) python manage.py runserver.
+
+Note :- We don't have any copyright of images/logo used in project, it's use for learning and not published any where.
